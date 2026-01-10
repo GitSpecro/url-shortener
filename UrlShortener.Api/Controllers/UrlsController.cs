@@ -45,5 +45,29 @@ namespace UrlShortener.Api.Controllers
                 originalUrl
             });
         }
+
+        [HttpGet("/{shortCode}")]
+        public IActionResult RedirectToOriginal(string shortCode)
+        {
+            var shortUrl = _context.ShortUrls
+                .FirstOrDefault(su => su.ShortCode == shortCode);
+
+            if (shortUrl == null)
+                return NotFound();
+
+            shortUrl.ClickCount++;
+
+            var user = _context.Users.First(u => u.Id == shortUrl.UserId);
+
+            var share = Math.Min(10 + (shortUrl.ClickCount / 5) * 10, 80);
+            user.SharePercentage = share;
+
+            var earnings = 10 * (share / 100m);
+            user.WalletBalance += earnings;
+
+            _context.SaveChanges();
+
+            return Redirect(shortUrl.OriginalUrl);
+        }
     }
 }
