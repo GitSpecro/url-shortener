@@ -69,5 +69,22 @@ namespace UrlShortener.Api.Controllers
 
             return Redirect(shortUrl.OriginalUrl);
         }
+
+        [HttpGet]
+        public IActionResult GetDashboard()
+        {
+            var data = _context.ShortUrls
+                .Select(s => new
+                {
+                    s.ShortCode,
+                    s.OriginalUrl,
+                    s.ClickCount,
+                    WalletBalance = s.User.WalletBalance,
+                    SharePercentage = s.User.SharePercentage
+                })
+                .ToList();
+
+            return Ok(data);
+        }
     }
 }
