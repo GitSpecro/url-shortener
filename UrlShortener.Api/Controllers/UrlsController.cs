@@ -60,10 +60,10 @@ namespace UrlShortener.Api.Controllers
 
             shortUrl.ClickCount++;
 
-            var user = _context.Users.First(u => u.Id == shortUrl.UserId);
-
             var share = Math.Min(10 + (shortUrl.ClickCount / 5) * 10, 80);
-            user.SharePercentage = share;
+            shortUrl.SharePercentage = share;
+
+            var user = _context.Users.First(u => u.Id == shortUrl.UserId);
 
             var earnings = 10 * (share / 100m);
             user.WalletBalance += earnings;
@@ -83,7 +83,7 @@ namespace UrlShortener.Api.Controllers
                     s.OriginalUrl,
                     s.ClickCount,
                     WalletBalance = s.User.WalletBalance,
-                    SharePercentage = s.User.SharePercentage
+                    s.SharePercentage
                 })
                 .ToList();
 

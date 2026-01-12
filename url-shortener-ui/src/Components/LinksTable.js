@@ -16,6 +16,7 @@ function LinksTable() {
   return (
     <div>
       <h2>My Links</h2>
+      <button onClick={loadLinks}>Refresh</button>
       <table>
         <thead>
           <tr>
@@ -29,7 +30,7 @@ function LinksTable() {
         <tbody>
           {links.map((l) => (
             <tr key={l.shortCode}>
-              <td><a href={l.originalUrl} target="_blank" rel="noopener noreferrer">https://localhost:7299/{l.shortCode}</a></td>
+              <td><a href={`https://localhost:7299/${l.shortCode}`} target="_blank" rel="noopener noreferrer">https://localhost:7299/{l.shortCode}</a></td>
               <td>{l.originalUrl}</td>
               <td>{l.clickCount}</td>
               <td>R{l.walletBalance}</td>
