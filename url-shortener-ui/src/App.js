@@ -1,9 +1,10 @@
+import "./App.css";
 import CreateShortUrl from "./Components/CreateShortUrl";
 import LinksTable from "./Components/LinksTable";
 
 function App() {
   return (
-    <div>
+    <div className='container'>
       <CreateShortUrl onCreated={() => window.location.reload()} />
       <LinksTable />
     </div>

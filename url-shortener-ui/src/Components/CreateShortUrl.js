@@ -20,13 +20,13 @@ function CreateShortUrl({ onCreated }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Create Short URL</h2>
+      <h1>Create Short URL</h1>
       <input
         value={url}
         onChange={(e) => setUrl(e.target.value)}
         placeholder="https://example.com"
       />
-      <button type="submit">Create</button>
+      <button type="submit" id="create-btn">Create</button>
     </form>
   );
 }
