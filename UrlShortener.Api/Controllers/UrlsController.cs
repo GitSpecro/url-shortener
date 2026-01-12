@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UrlShortener.Api.Data;
 using UrlShortener.Api.Models;
+using UrlShortener.Api.DTOs;
 
 namespace UrlShortener.Api.Controllers
 {
@@ -16,11 +17,14 @@ namespace UrlShortener.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateShortUrl([FromBody] string originalUrl)
+        public IActionResult CreateShortUrl([FromBody] CreateShortUrlRequest request)
         {
+
+            if(string.IsNullOrWhiteSpace(request.OriginalUrl))
+                return BadRequest("OriginalUrl is required");
+
             var shortCode = Guid.NewGuid().ToString("N").Substring(0, 6);
 
-            // Temporary: single default user
             var user = _context.Users.FirstOrDefault();
             if (user == null)
             {
@@ -31,7 +35,7 @@ namespace UrlShortener.Api.Controllers
 
             var shortUrl = new ShortUrl
             {
-                OriginalUrl = originalUrl,
+                OriginalUrl = request.OriginalUrl,
                 ShortCode = shortCode,
                 UserId = user.Id
             };
@@ -41,8 +45,7 @@ namespace UrlShortener.Api.Controllers
 
             return Ok(new
             {
-                shortUrl = shortCode,
-                originalUrl
+                shortUrl = shortCode
             });
         }
 
