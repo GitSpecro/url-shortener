@@ -9,7 +9,6 @@ function LinksTable() {
     const data = await response.json();
     setLinks(data);
     setWalletBalance(data[0].walletBalance);
-    console.log(data);
   };
 
   useEffect(() => {

@@ -21,7 +21,7 @@ This project is a simple full-stack URL shortener built as part of a technical a
 
 ### Backend
 1. Open the backend solution in Visual Studio
-2. Run the project (API runs on `http://localhost:7299`)
+2. Run the project (API runs on `https://localhost:7299`)
 
 ### Frontend
 ```bash
