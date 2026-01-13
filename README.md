@@ -24,6 +24,7 @@ This project uses SQLite with EF Core migrations.
 On first run, create the database by running:
 ```bash
 update-database
+```
 
 ### Backend
 1. Open the backend solution in Visual Studio
@@ -34,3 +35,4 @@ update-database
 cd url-shortener-ui
 npm install
 npm start
+```
