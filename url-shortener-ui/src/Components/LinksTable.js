@@ -8,7 +8,12 @@ function LinksTable() {
     const response = await fetch("https://localhost:7299/api/urls");
     const data = await response.json();
     setLinks(data);
-    setWalletBalance(data[0].walletBalance);
+
+    if (data.length > 0) {
+      setWalletBalance(data[0].walletBalance ?? 0);
+    } else {
+      setWalletBalance(0);
+    }
   };
 
   useEffect(() => {
@@ -35,7 +40,7 @@ function LinksTable() {
               <td><a href={`https://localhost:7299/${l.shortCode}`} target="_blank" rel="noopener noreferrer">https://localhost:7299/{l.shortCode}</a></td>
               <td>{l.originalUrl}</td>
               <td>{l.clickCount}</td>
-              <td>{l.sharePercentage}%</td>
+              <td>{l.sharePercentage ?? 0}%</td>
             </tr>
           ))}
         </tbody>

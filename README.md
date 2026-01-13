@@ -19,6 +19,12 @@ This project is a simple full-stack URL shortener built as part of a technical a
 
 ## Running the Project
 
+### Database
+This project uses SQLite with EF Core migrations.
+On first run, create the database by running:
+```bash
+update-database
+
 ### Backend
 1. Open the backend solution in Visual Studio
 2. Run the project (API runs on `https://localhost:7299`)
