@@ -362,5 +362,7 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-# Database file
+# Database files
 /UrlShortener.Api/urls.db
+/UrlShortener.Api/urls.db-shm
+/UrlShortener.Api/urls.db-wal
